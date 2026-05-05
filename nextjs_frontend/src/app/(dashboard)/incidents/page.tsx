@@ -37,7 +37,7 @@ export default function IncidentsPage() {
 
   useEffect(() => {
     fetchIncidents();
-  }, [(session as any)?.accessToken]);
+  }, [session]);
 
   const updateIncidentStatus = async (id: string, newStatus: string) => {
     if (!(session as any)?.accessToken) return;

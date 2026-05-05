@@ -37,7 +37,7 @@ export default function NetworkTrafficChart() {
       if (!session?.accessToken) return;
       
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://sentinelx-8lqt.onrender.com';
         const res = await fetch(`${apiUrl}/api/v1/events/recent`, {
           headers: {
             'Authorization': `Bearer ${session.accessToken}`

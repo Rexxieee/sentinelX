@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useAlertStore, ThreatAlert } from '../store/useAlertStore';
 
 const getWsUrl = () => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://sentinelx-8lqt.onrender.com';
   const wsUrl = apiUrl.replace(/^http/, 'ws');
   return `${wsUrl}/ws/alerts`;
 };

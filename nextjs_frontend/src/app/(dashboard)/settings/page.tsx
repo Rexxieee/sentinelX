@@ -10,7 +10,7 @@ export default function SettingsPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://sentinelx-8lqt.onrender.com';
 
   const handleSave = () => {
     setSaving(true);
@@ -111,7 +111,7 @@ export default function SettingsPage() {
                   <label className="text-sm font-medium text-slate-300">API Endpoint URL</label>
                   <input 
                     type="text" 
-                    defaultValue="http://localhost:8000"
+                    defaultValue="https://sentinelx-8lqt.onrender.com"
                     className="w-full bg-slateBlack border border-slate-700 rounded px-4 py-2 text-white focus:outline-none focus:border-neonBlue"
                   />
                 </div>

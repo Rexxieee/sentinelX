@@ -22,7 +22,7 @@ export default function RulesPage() {
   const [newSeverity, setNewSeverity] = useState('medium');
   const [newLogic, setNewLogic] = useState('{"field": "port", "operator": "==", "value": 22}');
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://sentinelx-8lqt.onrender.com';
 
   const fetchRules = async () => {
     if (!session?.accessToken) return;

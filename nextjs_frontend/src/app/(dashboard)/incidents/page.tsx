@@ -16,11 +16,12 @@ export default function IncidentsPage() {
   const { data: session } = useSession();
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [loading, setLoading] = useState(true);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://sentinelx-8lqt.onrender.com';
 
   const fetchIncidents = async () => {
     if (!session?.accessToken) return;
     try {
-      const res = await fetch('http://localhost:8000/api/v1/incidents/', {
+      const res = await fetch(`${apiUrl}/api/v1/incidents/`, {
         headers: { 'Authorization': `Bearer ${session.accessToken}` }
       });
       if (res.ok) {
@@ -45,7 +46,7 @@ export default function IncidentsPage() {
     setIncidents(prev => prev.map(inc => inc.id === id ? { ...inc, status: newStatus as any } : inc));
 
     try {
-      await fetch(`http://localhost:8000/api/v1/incidents/${id}`, {
+      await fetch(`${apiUrl}/api/v1/incidents/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -65,7 +66,7 @@ export default function IncidentsPage() {
     if (!confirm('Are you sure you want to delete this incident?')) return;
 
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/incidents/${id}`, {
+      const res = await fetch(`${apiUrl}/api/v1/incidents/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${session.accessToken}` }
       });

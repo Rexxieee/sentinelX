@@ -13,7 +13,7 @@ export default function ActiveThreatsTable() {
   const [escalated, setEscalated] = useState<Record<string, boolean>>({});
 
   const handleEscalate = async (alert: ThreatAlert, index: number) => {
-    if (!session?.accessToken) return;
+    if (!(session as any)?.accessToken) return;
     
     const key = `${alert.details.timestamp}-${index}`;
     setEscalating(prev => ({ ...prev, [key]: true }));
@@ -24,7 +24,7 @@ export default function ActiveThreatsTable() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.accessToken}`
+          'Authorization': `Bearer ${(session as any)?.accessToken}``
         },
         body: JSON.stringify({
           notes: `Escalated Threat: ${alert.alert_type}\nSource: ${alert.details.source_ip}\nTarget Port: ${alert.details.port}\nProtocol: ${alert.details.protocol}\nAction: ${alert.details.event_action}`,

@@ -47,7 +47,7 @@ export default function RulesPage() {
 
   const handleAddRule = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!session?.accessToken) return;
+   if (!(session as any)?.accessToken) return;
 
     try {
       const logic = JSON.parse(newLogic);

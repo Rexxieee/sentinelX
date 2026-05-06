@@ -27,13 +27,13 @@ export default function ActiveThreatsTable() {
           'Authorization': `Bearer ${(session as any)?.accessToken}`
         },
        body: JSON.stringify({
-          notes: `Escalated Threat: ${alert.alert_type}\nSource: ${alert.details.source_ip}\nTarget Port: ${alert.details.port}\nProtocol: ${alert.details.protocol}\nAction: ${alert.details.event_action}`,
-          status: 'open'
-        })
-        })
-      });
-      
-      if (res.ok) {
+         body: JSON.stringify({
+        notes: `Escalated Threat: ${alert.alert_type}\nSource: ${alert.details.source_ip}\nTarget Port: ${alert.details.port}\nProtocol: ${alert.details.protocol}\nAction: ${alert.details.event_action}`,
+        status: 'open'
+      })
+    });
+
+    if (res.ok) {
         setEscalated(prev => ({ ...prev, [key]: true }));
       }
     } catch (err) {

@@ -13,15 +13,19 @@ DATABASE_URL = os.getenv(
     "sqlite+aiosqlite:///./fastapi_db.db"
 )
 
+# asyncpg-specific args only apply to PostgreSQL connections
+is_postgres = DATABASE_URL.startswith("postgresql") or DATABASE_URL.startswith("postgres")
+connect_args = {
+    "statement_cache_size": 0,
+    "prepared_statement_cache_size": 0
+} if is_postgres else {}
+
 # Async engine setup
 engine = create_async_engine(
     DATABASE_URL,
     echo=False, # Set to True for SQL query logging
     future=True,
-    connect_args={
-        "statement_cache_size": 0,
-        "prepared_statement_cache_size": 0
-    }
+    connect_args=connect_args
 )
 
 # Async session factory

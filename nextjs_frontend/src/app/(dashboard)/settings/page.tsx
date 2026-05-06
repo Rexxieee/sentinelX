@@ -22,7 +22,7 @@ export default function SettingsPage() {
   };
 
   const handleDangerAction = async (action: string) => {
-    if (!session?.accessToken) {
+  if (!(session as any)?.accessToken) {
       alert('You must be logged in to perform this action.');
       return;
     }
@@ -38,7 +38,7 @@ export default function SettingsPage() {
 
         const res = await fetch(`${apiUrl}${endpoint}`, {
           method: 'DELETE',
-          headers: { 'Authorization': `Bearer ${session.accessToken}` }
+          headers: { 'Authorization': `Bearer ${(session as any)?.accessToken}` }
         });
 
         if (res.ok) {

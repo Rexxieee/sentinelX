@@ -21,13 +21,12 @@ export default function ActiveThreatsTable() {
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://sentinelx-8lqt.onrender.com';
       const res = await fetch(`${apiUrl}/api/v1/incidents/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${(session as any)?.accessToken}`
-        },
-       body: JSON.stringify({
-         body: JSON.stringify({
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${(session as any)?.accessToken}`
+      },
+      body: JSON.stringify({
         notes: `Escalated Threat: ${alert.alert_type}\nSource: ${alert.details.source_ip}\nTarget Port: ${alert.details.port}\nProtocol: ${alert.details.protocol}\nAction: ${alert.details.event_action}`,
         status: 'open'
       })

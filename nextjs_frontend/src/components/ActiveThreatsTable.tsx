@@ -26,9 +26,10 @@ export default function ActiveThreatsTable() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${(session as any)?.accessToken}``
         },
-        body: JSON.stringify({
+       body: JSON.stringify({
           notes: `Escalated Threat: ${alert.alert_type}\nSource: ${alert.details.source_ip}\nTarget Port: ${alert.details.port}\nProtocol: ${alert.details.protocol}\nAction: ${alert.details.event_action}`,
           status: 'open'
+        })
         })
       });
       

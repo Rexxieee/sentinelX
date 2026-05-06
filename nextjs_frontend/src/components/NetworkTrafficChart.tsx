@@ -34,13 +34,13 @@ export default function NetworkTrafficChart() {
 
   useEffect(() => {
     const fetchRecentEvents = async () => {
-      if (!session?.accessToken) return;
+     if (!(session as any)?.accessToken) return;
       
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://sentinelx-8lqt.onrender.com';
         const res = await fetch(`${apiUrl}/api/v1/events/recent`, {
           headers: {
-            'Authorization': `Bearer ${session.accessToken}`
+            'Authorization': `Bearer ${(session as any)?.accessToken}`
           }
         });
         if (!res.ok) throw new Error('Failed to fetch');
@@ -73,7 +73,7 @@ export default function NetworkTrafficChart() {
     // Auto-refresh every 5 seconds
     const interval = setInterval(fetchRecentEvents, 5000);
     return () => clearInterval(interval);
-  }, [session?.accessToken]);
+ }, [session]);
 
   return (
     <div className="bg-gunmetal border border-slateBlack rounded-lg p-6 shadow-lg h-[400px] flex flex-col">

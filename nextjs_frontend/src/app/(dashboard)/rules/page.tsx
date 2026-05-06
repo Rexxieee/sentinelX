@@ -55,7 +55,7 @@ export default function RulesPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.accessToken}`
+  'Authorization': `Bearer ${(session as any)?.accessToken}`
         },
         body: JSON.stringify({
           name: newName,
@@ -75,13 +75,13 @@ export default function RulesPage() {
   };
 
   const handleDeleteRule = async (id: string) => {
-    if (!session?.accessToken) return;
+    if (!(session as any)?.accessToken) return;
     if (!confirm('Are you sure you want to delete this rule?')) return;
 
     try {
       const res = await fetch(`${apiUrl}/api/v1/alert-rules/${id}`, {
         method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${session.accessToken}` }
+        headers: { 'Authorization': `Bearer ${(session as any)?.accessToken}` }
       });
 
       if (res.ok) {

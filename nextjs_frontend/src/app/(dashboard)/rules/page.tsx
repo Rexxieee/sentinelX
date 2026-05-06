@@ -25,10 +25,10 @@ export default function RulesPage() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://sentinelx-8lqt.onrender.com';
 
   const fetchRules = async () => {
-    if (!session?.accessToken) return;
+    if (!(session as any)?.accessToken) return;
     try {
       const res = await fetch(`${apiUrl}/api/v1/alert-rules/`, {
-        headers: { 'Authorization': `Bearer ${session.accessToken}` }
+      headers: { 'Authorization': `Bearer ${(session as any).accessToken}` }
       });
       if (res.ok) {
         const data = await res.json();

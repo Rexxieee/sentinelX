@@ -43,7 +43,7 @@ export default function RulesPage() {
 
   useEffect(() => {
     fetchRules();
-  }, [session?.accessToken]);
+ }, [session]);
 
   const handleAddRule = async (e: React.FormEvent) => {
     e.preventDefault();
